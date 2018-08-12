@@ -17,10 +17,7 @@ class PostAdmin(admin.ModelAdmin):
 # exclude post selector from admin catogires
 # https://docs.djangoproject.com/en/2.1/ref/contrib/admin/
 
-
-# class CategoryAdmin(admin.ModelAdmin):
-#   inlines = [
-#   CategoriesInLine
-#   ]
+class CategoryAdmin(admin.ModelAdmin):
+	exclude = 'posts'
 
 # admin.site.register(Post)
