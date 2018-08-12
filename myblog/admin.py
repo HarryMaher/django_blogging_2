@@ -18,6 +18,6 @@ class PostAdmin(admin.ModelAdmin):
 # https://docs.djangoproject.com/en/2.1/ref/contrib/admin/
 
 class CategoryAdmin(admin.ModelAdmin):
-	exclude = 'posts'
+	exclude = ('posts',)
 
 # admin.site.register(Post)
