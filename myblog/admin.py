@@ -3,7 +3,7 @@ from myblog.models import Post
 from myblog.models import Category
 
 
-admin.site.register(Category)
+# admin.site.register(Category)
 
 # Category selector inside of posts
 class CategoriesInLine(admin.TabularInline):
@@ -16,7 +16,7 @@ class PostAdmin(admin.ModelAdmin):
     ]
 # exclude post selector from admin catogires
 # https://docs.djangoproject.com/en/2.1/ref/contrib/admin/
-
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
 	exclude = ('posts',)
 
