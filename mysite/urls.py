@@ -15,10 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework import routers
+from myblog import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myblog.urls')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
     # path('login/', login, {'template_name': 'login.html'}, name="login"),
     # path('logout/', logout, {'next_page': '/'}, name="logout"),
 ]
