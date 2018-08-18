@@ -1,11 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
-from myblog.models import Post
+from myblog.models import Post, Category
 from django.views.generic import ListView
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from myblog.serializers import UserSerializer, GroupSerializer
+from myblog.serializers import UserSerializer, GroupSerializer, PostSerializer, CategorySerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,6 +23,19 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Post.objects.all().order_by('-published_date')
+    serializer_class = PostSerializer
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 # Create your views here. 
